@@ -325,10 +325,9 @@ const Canvas = forwardRef<CanvasRef, CanvasProps>(
       getSvg,
     }));
 
-    useEffect(
-      () => onPathsChange && onPathsChange(paths),
-      [paths, onPathsChange]
-    );
+    useEffect(() => {
+        onPathsChange?.(paths);
+    }, [paths]);
 
     const panGesture = Gesture.Pan().runOnJS(true)
       .onChange(({ x, y }) => {
